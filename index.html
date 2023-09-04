@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator PSIM</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+
+        /* Navbar Start */
+        .navbar{
+            background-color: white !important;
+        }
+        form{
+            background-color: #f9f9f9;
+            width: 460px;
+            height: 48px;
+            align-items: center;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 5px;
+        }
+        form button{
+            border: 0;
+            background-color: #f9f9f9;
+            margin-top: 4px;
+        }
+        form button i{
+            font-size: 20px;
+        }
+        form input{
+            background-color: #f9f9f9 !important;
+            border: 0 !important;
+        }
+        .form-control:focus{
+            box-shadow: none;
+        }
+        .in_responsive{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        /* User start */
+        .userpart{
+            padding-top: 10px;
+            padding-bottom: 80px;
+        }
+        .user_head{
+            padding-top: 22px;
+            padding-bottom: 16px;
+            width: 55%;
+            background-color: rgba(0, 152, 244, 1);
+            display: inline-block;
+            border-radius: 6px;
+        }
+        .userhead_main{
+            text-align: center;
+        }
+        .user_head h2{
+            font-family: Lato;
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 20px;
+            letter-spacing: 0em;
+            text-align: center;
+            color: #fff;
+        }
+        .filter_btn{
+            text-align: center;
+            margin-left: auto;
+        }
+        .firstfilter{
+            margin-left: 0;
+        }
+        .filter_btn button{
+            padding: 10px 0;
+            border: 1px solid rgba(80, 205, 137, 1);
+            align-items: center;
+            width: 100%;
+        }
+        .filter_btn button i{
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+        .filter_btn button:hover{
+            border-color: rgba(80, 205, 137, 1);
+            background-color: #d5d1d1;
+            color: black;
+        }
+        .user_box{
+            position: relative;
+
+        }
+        .user_box span{
+            position: absolute;
+            top: 4px;
+            right: 0;
+        }
+        .profile_main{
+            padding: 24px 45px 24px 50px;
+        }
+        .profile_content span{
+            font-family: Lato;
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: 0em;
+color: #3a3a3a;
+        }
+        .profile_sub .btn_sec .btn:first-child{
+            background-color: rgba(241, 65, 108, 1);
+            border: 1px solid rgba(241, 65, 108, 1);
+            font-family: Lato;
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: center;
+color: white;
+padding: 8px 24px;
+        }
+        .info_btn .btn{
+            background-color: transparent !important;
+            border-color: transparent !important;
+            padding: 0 !important;
+        }
+        .btn_sec{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+        .profile_sub{
+            padding-bottom: 18px;
+        }
+        .profile_head{
+            border: 1px solid rgb(240, 240, 240);
+        }
+        
+/* Checkbox */
+.custom-checkbox {
+  display: inline-block;
+  position: relative;
+  width: 35px;
+  height: 35px;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35px;
+  height: 35px;
+  background-color: rgb(240, 240, 240); /* Start with white background */
+  border: 2px solid rgba(56, 56, 56, 0.247); /* Add an orange border */
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, border-color 0.3s; /* Add transition effects */
+}
+
+.checkbox-icon::after {
+  content: "\2713"; /* Checkmark Unicode character */
+  color: white;
+  font-size: 18px;
+  display: none;
+}
+
+.custom-checkbox input:checked + .checkbox-icon {
+  background-color: rgba(0, 152, 244, 1); /* Change background color on checked */
+  border-color: rgba(0, 152, 244, 1); /* Change border color on checked */
+}
+
+.custom-checkbox input:checked + .checkbox-icon::after {
+  display: block;
+}
+.check_main label{
+ margin-left: auto;
+ margin-top: 5px;
+}
+.tmargin{
+    margin-top: 14px;
+}
+
+
+        @media screen and (max-width:992px) {
+          .in_responsive{
+          padding: auto;
+        }
+        .in_responsive_main{
+          display: flex;
+          justify-content: center;
+        }
+
+        form{
+            background-color: #f9f9f9;
+            width: 100%;
+          }
+          .filter_btn{
+            margin-top: 8px;
+          }
+          .userpart{
+            padding-top: 10px;
+            padding-bottom: 38px;
+        }
+        }
+        @media screen and (max-width:576px) {
+            .tmargin{
+                margin-top: 3.2px;
+            } 
+        }
+
+    </style>
+</head>
+<body>
+
+  <!-- Nav Start -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img height="61" width="154" src="https://i.ibb.co/DQ2c8nr/image-3.png" alt="Brand_logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <form class="d-flex" role="search">
+            <button><i class="fa-solid fa-magnifying-glass" style="color: #868686;"></i></button>
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        </form>
+        </ul>
+
+        <div class="d-flex justify-contents-center in_responsive_main">
+            <div class="in_responsive">
+                <span style="font-size: 20px; display: inline-block;">Khairul Nizam</span>
+                <span style="font-size: 14px; display: inline-block;">Administrator</span>
+            </div>
+            <div class="ms-4">
+                <img clas="img-fluid" height="50" width="50" src="https://i.ibb.co/HYSg8v2/Ellipse-36.png" alt="Ellipse">
+            </div>
+        </div>
+        
+      </div>
+    </div>
+  </nav>
+  <!-- Nav end -->
+
+  <hr>
+
+  <!-- User Section Start -->
+  <section class="userpart">
+    <div class="container">
+        <div class="userhead_main">
+            <div class="user_head text-center">
+                <h2>User Mangement</h2>
+            </div>
+        </div>
+        <div class="user_filter mt-4">
+            <div class="row">
+                <div class="col-lg-2 filter_btn firstfilter">
+                    <button class="btn"><i class="fa-light fa-plus fa-lg" style="color: #000000;"></i> <span>Creating User</span></button>
+                </div>
+                <div class="col-lg-2 filter_btn">
+                    <button class="btn"><i class="fa-light fa-plus fa-lg" style="color: #000000;"></i> <span>Hide Disable User</span></button>
+                </div>
+                <div class="col-lg-2 filter_btn">
+                    <button class="btn"><i class="fa-light fa-plus fa-lg" style="color: #000000;"></i> <span>Filter</span></button>
+                </div>
+                <div class="col-lg-2 filter_btn">
+                    <button class="btn"><i class="fa-light fa-plus fa-lg" style="color: #000000;"></i> <span>Sort By</span></button>
+                </div>
+                <div class="col-lg-2 filter_btn">
+                    <button class="btn"><i class="fa-light fa-plus fa-lg" style="color: #000000;"></i> <span>Delete</span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="user_profile mt-4">
+            <div class="row gy-3">
+                <div class="col-xl-4">
+                    <div class="profile_head shadow-sm">
+                        <div class="profile_main">
+                            <div class="row">
+                                <div class="col-5 text-end user_box">
+                                    <img src="https://i.ibb.co/R0L2KXN/Ellipse-44.png" alt="User Picture">
+                                    <span><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 14.5349L8.413 14.5199L18.045 4.97988C18.423 4.60188 18.631 4.09988 18.631 3.56588C18.631 3.03188 18.423 2.52988 18.045 2.15188L16.459 0.565875C15.703 -0.190125 14.384 -0.186125 13.634 0.562875L4 10.1049V14.5349ZM15.045 1.97988L16.634 3.56288L15.037 5.14488L13.451 3.55988L15.045 1.97988ZM6 10.9389L12.03 4.96588L13.616 6.55188L7.587 12.5229L6 12.5279V10.9389Z" fill="#585656"/>
+                                        <path d="M2 18.522H16C17.103 18.522 18 17.625 18 16.522V7.85397L16 9.85397V16.522H5.158C5.132 16.522 5.105 16.532 5.079 16.532C5.046 16.532 5.013 16.523 4.979 16.522H2V2.52197H8.847L10.847 0.521973H2C0.897 0.521973 0 1.41897 0 2.52197V16.522C0 17.625 0.897 18.522 2 18.522Z" fill="#585656"/>
+                                        </svg></span>
+                                </div>
+                                <div class="col-7">
+                                    <div class="check_main">
+                                        <label class="custom-checkbox d-flex align-items-center">
+                                            <input id="checkboxInput" type="checkbox">
+                                            <span class="checkbox-icon"></span>
+                                        </label>
+                                    </div>
+    
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>ID:</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>01</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Operator Name :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Admin</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Full Name :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Khairal Nizam</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Goup :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Male</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Last Access:</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>04/07/2020 12:23 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile_sub">
+                            <div class="btn_sec">
+                                <button class="btn">Disable</button>
+                                <div class="info_btn">
+                                    <button style="margin-right: 12px;" class="btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="16" cy="16" r="16" fill="#009EF6"/>
+                                        <path d="M15.1984 15.1987L15.2422 15.1773C15.3789 15.109 15.5324 15.0813 15.6845 15.0975C15.8365 15.1137 15.9807 15.1731 16.1 15.2688C16.2193 15.3644 16.3087 15.4922 16.3577 15.6371C16.4066 15.7819 16.4129 15.9378 16.376 16.0861L15.6208 19.1112C15.5837 19.2597 15.5898 19.4157 15.6386 19.5607C15.6874 19.7057 15.7768 19.8337 15.8962 19.9295C16.0155 20.0253 16.1599 20.0848 16.312 20.1011C16.4642 20.1173 16.6178 20.0895 16.7547 20.0211L16.7984 19.9987M25.5984 15.9987C25.5984 17.2594 25.3501 18.5077 24.8677 19.6724C24.3852 20.8372 23.6781 21.8955 22.7867 22.7869C21.8952 23.6783 20.8369 24.3855 19.6722 24.8679C18.5075 25.3504 17.2591 25.5987 15.9984 25.5987C14.7377 25.5987 13.4894 25.3504 12.3247 24.8679C11.16 24.3855 10.1017 23.6783 9.21021 22.7869C8.31877 21.8955 7.61164 20.8372 7.12919 19.6724C6.64675 18.5077 6.39844 17.2594 6.39844 15.9987C6.39844 13.4526 7.40986 11.0108 9.21021 9.21046C11.0106 7.41011 13.4524 6.39868 15.9984 6.39868C18.5445 6.39868 20.9863 7.41011 22.7867 9.21046C24.587 11.0108 25.5984 13.4526 25.5984 15.9987ZM15.9984 11.9987H16.007V12.0072H15.9984V11.9987Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg></button>
+                                    <button class="btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="16" cy="16" r="16" fill="#F1416C"/>
+                                        <path d="M18.4304 6.39868C18.8782 6.39879 19.3145 6.52568 19.6777 6.76138C20.0409 6.99708 20.3124 7.32964 20.4539 7.71196L21.0331 9.27868H24.5318C24.8147 9.27868 25.086 9.37982 25.286 9.55986C25.4861 9.73989 25.5984 9.98407 25.5984 10.2387C25.5984 10.4933 25.4861 10.7375 25.286 10.9175C25.086 11.0975 24.8147 11.1987 24.5318 11.1987L24.5286 11.2668L23.6038 22.9241C23.5461 23.6505 23.1848 24.3302 22.5926 24.8264C22.0005 25.3227 21.2214 25.5986 20.4123 25.5987H11.5846C10.7755 25.5986 9.99642 25.3227 9.40427 24.8264C8.81212 24.3302 8.45082 23.6505 8.3931 22.9241L7.4683 11.2659C7.46637 11.2435 7.46531 11.2211 7.4651 11.1987C7.18221 11.1987 6.9109 11.0975 6.71086 10.9175C6.51082 10.7375 6.39844 10.4933 6.39844 10.2387C6.39844 9.98407 6.51082 9.73989 6.71086 9.55986C6.9109 9.37982 7.18221 9.27868 7.4651 9.27868H10.9638L11.543 7.71196C11.6845 7.32949 11.9562 6.99681 12.3196 6.7611C12.683 6.52538 13.1196 6.39858 13.5675 6.39868H18.4304ZM22.3952 11.1987H9.60164L10.5211 22.7868C10.5403 23.029 10.6606 23.2556 10.8579 23.421C11.0552 23.5865 11.3149 23.6786 11.5846 23.6787H20.4123C20.682 23.6786 20.9416 23.5865 21.139 23.421C21.3363 23.2556 21.4566 23.029 21.4758 22.7868L22.3952 11.1987ZM13.8651 14.0787C14.1264 14.0787 14.3785 14.165 14.5738 14.3213C14.769 14.4775 14.8937 14.6928 14.9243 14.9264L14.9318 15.0387V19.8387C14.9315 20.0834 14.8274 20.3187 14.6407 20.4966C14.4541 20.6746 14.199 20.7816 13.9276 20.796C13.6562 20.8103 13.389 20.7308 13.1805 20.5738C12.972 20.4167 12.838 20.194 12.8059 19.951L12.7984 19.8387V15.0387C12.7984 14.7841 12.9108 14.5399 13.1109 14.3599C13.3109 14.1798 13.5822 14.0787 13.8651 14.0787ZM18.1318 14.0787C18.4147 14.0787 18.686 14.1798 18.886 14.3599C19.0861 14.5399 19.1984 14.7841 19.1984 15.0387V19.8387C19.1984 20.0933 19.0861 20.3375 18.886 20.5175C18.686 20.6975 18.4147 20.7987 18.1318 20.7987C17.8489 20.7987 17.5776 20.6975 17.3775 20.5175C17.1775 20.3375 17.0651 20.0933 17.0651 19.8387V15.0387C17.0651 14.7841 17.1775 14.5399 17.3775 14.3599C17.5776 14.1798 17.8489 14.0787 18.1318 14.0787ZM18.4304 8.31868H13.5664L13.2112 9.27868H18.7856L18.4304 8.31868Z" fill="white"/>
+                                        </svg></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+
+
+                </div>
+                <div class="col-xl-4">
+                    <div class="profile_head shadow-sm">
+                        <div class="profile_main">
+                            <div class="row">
+                                <div class="col-5 text-end user_box">
+                                    <img src="https://i.ibb.co/R0L2KXN/Ellipse-44.png" alt="User Picture">
+                                    <span><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 14.5349L8.413 14.5199L18.045 4.97988C18.423 4.60188 18.631 4.09988 18.631 3.56588C18.631 3.03188 18.423 2.52988 18.045 2.15188L16.459 0.565875C15.703 -0.190125 14.384 -0.186125 13.634 0.562875L4 10.1049V14.5349ZM15.045 1.97988L16.634 3.56288L15.037 5.14488L13.451 3.55988L15.045 1.97988ZM6 10.9389L12.03 4.96588L13.616 6.55188L7.587 12.5229L6 12.5279V10.9389Z" fill="#585656"/>
+                                        <path d="M2 18.522H16C17.103 18.522 18 17.625 18 16.522V7.85397L16 9.85397V16.522H5.158C5.132 16.522 5.105 16.532 5.079 16.532C5.046 16.532 5.013 16.523 4.979 16.522H2V2.52197H8.847L10.847 0.521973H2C0.897 0.521973 0 1.41897 0 2.52197V16.522C0 17.625 0.897 18.522 2 18.522Z" fill="#585656"/>
+                                        </svg></span>
+                                </div>
+                                <div class="col-7">
+                                    <div class="check_main">
+                                        <label class="custom-checkbox d-flex align-items-center">
+                                            <input id="checkboxInput" type="checkbox">
+                                            <span class="checkbox-icon"></span>
+                                        </label>
+                                    </div>
+    
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>ID:</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>01</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Operator Name :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Admin</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Full Name :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Khairal Nizam</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Goup :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Male</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Last Access:</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>04/07/2020 12:23 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile_sub">
+                            <div class="btn_sec">
+                                <button class="btn">Disable</button>
+                                <div class="info_btn">
+                                    <button style="margin-right: 12px;" class="btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="16" cy="16" r="16" fill="#009EF6"/>
+                                        <path d="M15.1984 15.1987L15.2422 15.1773C15.3789 15.109 15.5324 15.0813 15.6845 15.0975C15.8365 15.1137 15.9807 15.1731 16.1 15.2688C16.2193 15.3644 16.3087 15.4922 16.3577 15.6371C16.4066 15.7819 16.4129 15.9378 16.376 16.0861L15.6208 19.1112C15.5837 19.2597 15.5898 19.4157 15.6386 19.5607C15.6874 19.7057 15.7768 19.8337 15.8962 19.9295C16.0155 20.0253 16.1599 20.0848 16.312 20.1011C16.4642 20.1173 16.6178 20.0895 16.7547 20.0211L16.7984 19.9987M25.5984 15.9987C25.5984 17.2594 25.3501 18.5077 24.8677 19.6724C24.3852 20.8372 23.6781 21.8955 22.7867 22.7869C21.8952 23.6783 20.8369 24.3855 19.6722 24.8679C18.5075 25.3504 17.2591 25.5987 15.9984 25.5987C14.7377 25.5987 13.4894 25.3504 12.3247 24.8679C11.16 24.3855 10.1017 23.6783 9.21021 22.7869C8.31877 21.8955 7.61164 20.8372 7.12919 19.6724C6.64675 18.5077 6.39844 17.2594 6.39844 15.9987C6.39844 13.4526 7.40986 11.0108 9.21021 9.21046C11.0106 7.41011 13.4524 6.39868 15.9984 6.39868C18.5445 6.39868 20.9863 7.41011 22.7867 9.21046C24.587 11.0108 25.5984 13.4526 25.5984 15.9987ZM15.9984 11.9987H16.007V12.0072H15.9984V11.9987Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg></button>
+                                    <button class="btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="16" cy="16" r="16" fill="#F1416C"/>
+                                        <path d="M18.4304 6.39868C18.8782 6.39879 19.3145 6.52568 19.6777 6.76138C20.0409 6.99708 20.3124 7.32964 20.4539 7.71196L21.0331 9.27868H24.5318C24.8147 9.27868 25.086 9.37982 25.286 9.55986C25.4861 9.73989 25.5984 9.98407 25.5984 10.2387C25.5984 10.4933 25.4861 10.7375 25.286 10.9175C25.086 11.0975 24.8147 11.1987 24.5318 11.1987L24.5286 11.2668L23.6038 22.9241C23.5461 23.6505 23.1848 24.3302 22.5926 24.8264C22.0005 25.3227 21.2214 25.5986 20.4123 25.5987H11.5846C10.7755 25.5986 9.99642 25.3227 9.40427 24.8264C8.81212 24.3302 8.45082 23.6505 8.3931 22.9241L7.4683 11.2659C7.46637 11.2435 7.46531 11.2211 7.4651 11.1987C7.18221 11.1987 6.9109 11.0975 6.71086 10.9175C6.51082 10.7375 6.39844 10.4933 6.39844 10.2387C6.39844 9.98407 6.51082 9.73989 6.71086 9.55986C6.9109 9.37982 7.18221 9.27868 7.4651 9.27868H10.9638L11.543 7.71196C11.6845 7.32949 11.9562 6.99681 12.3196 6.7611C12.683 6.52538 13.1196 6.39858 13.5675 6.39868H18.4304ZM22.3952 11.1987H9.60164L10.5211 22.7868C10.5403 23.029 10.6606 23.2556 10.8579 23.421C11.0552 23.5865 11.3149 23.6786 11.5846 23.6787H20.4123C20.682 23.6786 20.9416 23.5865 21.139 23.421C21.3363 23.2556 21.4566 23.029 21.4758 22.7868L22.3952 11.1987ZM13.8651 14.0787C14.1264 14.0787 14.3785 14.165 14.5738 14.3213C14.769 14.4775 14.8937 14.6928 14.9243 14.9264L14.9318 15.0387V19.8387C14.9315 20.0834 14.8274 20.3187 14.6407 20.4966C14.4541 20.6746 14.199 20.7816 13.9276 20.796C13.6562 20.8103 13.389 20.7308 13.1805 20.5738C12.972 20.4167 12.838 20.194 12.8059 19.951L12.7984 19.8387V15.0387C12.7984 14.7841 12.9108 14.5399 13.1109 14.3599C13.3109 14.1798 13.5822 14.0787 13.8651 14.0787ZM18.1318 14.0787C18.4147 14.0787 18.686 14.1798 18.886 14.3599C19.0861 14.5399 19.1984 14.7841 19.1984 15.0387V19.8387C19.1984 20.0933 19.0861 20.3375 18.886 20.5175C18.686 20.6975 18.4147 20.7987 18.1318 20.7987C17.8489 20.7987 17.5776 20.6975 17.3775 20.5175C17.1775 20.3375 17.0651 20.0933 17.0651 19.8387V15.0387C17.0651 14.7841 17.1775 14.5399 17.3775 14.3599C17.5776 14.1798 17.8489 14.0787 18.1318 14.0787ZM18.4304 8.31868H13.5664L13.2112 9.27868H18.7856L18.4304 8.31868Z" fill="white"/>
+                                        </svg></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+
+
+                </div>
+                <div class="col-xl-4">
+                    <div class="profile_head shadow-sm">
+                        <div class="profile_main">
+                            <div class="row">
+                                <div class="col-5 text-end user_box">
+                                    <img src="https://i.ibb.co/R0L2KXN/Ellipse-44.png" alt="User Picture">
+                                    <span><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 14.5349L8.413 14.5199L18.045 4.97988C18.423 4.60188 18.631 4.09988 18.631 3.56588C18.631 3.03188 18.423 2.52988 18.045 2.15188L16.459 0.565875C15.703 -0.190125 14.384 -0.186125 13.634 0.562875L4 10.1049V14.5349ZM15.045 1.97988L16.634 3.56288L15.037 5.14488L13.451 3.55988L15.045 1.97988ZM6 10.9389L12.03 4.96588L13.616 6.55188L7.587 12.5229L6 12.5279V10.9389Z" fill="#585656"/>
+                                        <path d="M2 18.522H16C17.103 18.522 18 17.625 18 16.522V7.85397L16 9.85397V16.522H5.158C5.132 16.522 5.105 16.532 5.079 16.532C5.046 16.532 5.013 16.523 4.979 16.522H2V2.52197H8.847L10.847 0.521973H2C0.897 0.521973 0 1.41897 0 2.52197V16.522C0 17.625 0.897 18.522 2 18.522Z" fill="#585656"/>
+                                        </svg></span>
+                                </div>
+                                <div class="col-7">
+                                    <div class="check_main">
+                                        <label class="custom-checkbox d-flex align-items-center">
+                                            <input id="checkboxInput" type="checkbox">
+                                            <span class="checkbox-icon"></span>
+                                        </label>
+                                    </div>
+    
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>ID:</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>01</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Operator Name :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Admin</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Full Name :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Khairal Nizam</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Goup :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Male</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Last Access:</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>04/07/2020 12:23 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile_sub">
+                            <div class="btn_sec">
+                                <button class="btn">Disable</button>
+                                <div class="info_btn">
+                                    <button style="margin-right: 12px;" class="btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="16" cy="16" r="16" fill="#009EF6"/>
+                                        <path d="M15.1984 15.1987L15.2422 15.1773C15.3789 15.109 15.5324 15.0813 15.6845 15.0975C15.8365 15.1137 15.9807 15.1731 16.1 15.2688C16.2193 15.3644 16.3087 15.4922 16.3577 15.6371C16.4066 15.7819 16.4129 15.9378 16.376 16.0861L15.6208 19.1112C15.5837 19.2597 15.5898 19.4157 15.6386 19.5607C15.6874 19.7057 15.7768 19.8337 15.8962 19.9295C16.0155 20.0253 16.1599 20.0848 16.312 20.1011C16.4642 20.1173 16.6178 20.0895 16.7547 20.0211L16.7984 19.9987M25.5984 15.9987C25.5984 17.2594 25.3501 18.5077 24.8677 19.6724C24.3852 20.8372 23.6781 21.8955 22.7867 22.7869C21.8952 23.6783 20.8369 24.3855 19.6722 24.8679C18.5075 25.3504 17.2591 25.5987 15.9984 25.5987C14.7377 25.5987 13.4894 25.3504 12.3247 24.8679C11.16 24.3855 10.1017 23.6783 9.21021 22.7869C8.31877 21.8955 7.61164 20.8372 7.12919 19.6724C6.64675 18.5077 6.39844 17.2594 6.39844 15.9987C6.39844 13.4526 7.40986 11.0108 9.21021 9.21046C11.0106 7.41011 13.4524 6.39868 15.9984 6.39868C18.5445 6.39868 20.9863 7.41011 22.7867 9.21046C24.587 11.0108 25.5984 13.4526 25.5984 15.9987ZM15.9984 11.9987H16.007V12.0072H15.9984V11.9987Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg></button>
+                                    <button class="btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="16" cy="16" r="16" fill="#F1416C"/>
+                                        <path d="M18.4304 6.39868C18.8782 6.39879 19.3145 6.52568 19.6777 6.76138C20.0409 6.99708 20.3124 7.32964 20.4539 7.71196L21.0331 9.27868H24.5318C24.8147 9.27868 25.086 9.37982 25.286 9.55986C25.4861 9.73989 25.5984 9.98407 25.5984 10.2387C25.5984 10.4933 25.4861 10.7375 25.286 10.9175C25.086 11.0975 24.8147 11.1987 24.5318 11.1987L24.5286 11.2668L23.6038 22.9241C23.5461 23.6505 23.1848 24.3302 22.5926 24.8264C22.0005 25.3227 21.2214 25.5986 20.4123 25.5987H11.5846C10.7755 25.5986 9.99642 25.3227 9.40427 24.8264C8.81212 24.3302 8.45082 23.6505 8.3931 22.9241L7.4683 11.2659C7.46637 11.2435 7.46531 11.2211 7.4651 11.1987C7.18221 11.1987 6.9109 11.0975 6.71086 10.9175C6.51082 10.7375 6.39844 10.4933 6.39844 10.2387C6.39844 9.98407 6.51082 9.73989 6.71086 9.55986C6.9109 9.37982 7.18221 9.27868 7.4651 9.27868H10.9638L11.543 7.71196C11.6845 7.32949 11.9562 6.99681 12.3196 6.7611C12.683 6.52538 13.1196 6.39858 13.5675 6.39868H18.4304ZM22.3952 11.1987H9.60164L10.5211 22.7868C10.5403 23.029 10.6606 23.2556 10.8579 23.421C11.0552 23.5865 11.3149 23.6786 11.5846 23.6787H20.4123C20.682 23.6786 20.9416 23.5865 21.139 23.421C21.3363 23.2556 21.4566 23.029 21.4758 22.7868L22.3952 11.1987ZM13.8651 14.0787C14.1264 14.0787 14.3785 14.165 14.5738 14.3213C14.769 14.4775 14.8937 14.6928 14.9243 14.9264L14.9318 15.0387V19.8387C14.9315 20.0834 14.8274 20.3187 14.6407 20.4966C14.4541 20.6746 14.199 20.7816 13.9276 20.796C13.6562 20.8103 13.389 20.7308 13.1805 20.5738C12.972 20.4167 12.838 20.194 12.8059 19.951L12.7984 19.8387V15.0387C12.7984 14.7841 12.9108 14.5399 13.1109 14.3599C13.3109 14.1798 13.5822 14.0787 13.8651 14.0787ZM18.1318 14.0787C18.4147 14.0787 18.686 14.1798 18.886 14.3599C19.0861 14.5399 19.1984 14.7841 19.1984 15.0387V19.8387C19.1984 20.0933 19.0861 20.3375 18.886 20.5175C18.686 20.6975 18.4147 20.7987 18.1318 20.7987C17.8489 20.7987 17.5776 20.6975 17.3775 20.5175C17.1775 20.3375 17.0651 20.0933 17.0651 19.8387V15.0387C17.0651 14.7841 17.1775 14.5399 17.3775 14.3599C17.5776 14.1798 17.8489 14.0787 18.1318 14.0787ZM18.4304 8.31868H13.5664L13.2112 9.27868H18.7856L18.4304 8.31868Z" fill="white"/>
+                                        </svg></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+
+
+                </div>
+            </div>
+
+            <div class="row gy-3 tmargin">
+                <div class="col-xl-4">
+                    <div class="profile_head shadow-sm">
+                        <div class="profile_main">
+                            <div class="row">
+                                <div class="col-5 text-end user_box">
+                                    <img src="https://i.ibb.co/R0L2KXN/Ellipse-44.png" alt="User Picture">
+                                    <span><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 14.5349L8.413 14.5199L18.045 4.97988C18.423 4.60188 18.631 4.09988 18.631 3.56588C18.631 3.03188 18.423 2.52988 18.045 2.15188L16.459 0.565875C15.703 -0.190125 14.384 -0.186125 13.634 0.562875L4 10.1049V14.5349ZM15.045 1.97988L16.634 3.56288L15.037 5.14488L13.451 3.55988L15.045 1.97988ZM6 10.9389L12.03 4.96588L13.616 6.55188L7.587 12.5229L6 12.5279V10.9389Z" fill="#585656"/>
+                                        <path d="M2 18.522H16C17.103 18.522 18 17.625 18 16.522V7.85397L16 9.85397V16.522H5.158C5.132 16.522 5.105 16.532 5.079 16.532C5.046 16.532 5.013 16.523 4.979 16.522H2V2.52197H8.847L10.847 0.521973H2C0.897 0.521973 0 1.41897 0 2.52197V16.522C0 17.625 0.897 18.522 2 18.522Z" fill="#585656"/>
+                                        </svg></span>
+                                </div>
+                                <div class="col-7">
+                                    <div class="check_main">
+                                        <label class="custom-checkbox d-flex align-items-center">
+                                            <input id="checkboxInput" type="checkbox">
+                                            <span class="checkbox-icon"></span>
+                                        </label>
+                                    </div>
+    
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>ID:</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>01</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Operator Name :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Admin</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Full Name :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Khairal Nizam</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Goup :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Male</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Last Access:</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>04/07/2020 12:23 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile_sub">
+                            <div class="btn_sec">
+                                <button class="btn">Disable</button>
+                                <div class="info_btn">
+                                    <button style="margin-right: 12px;" class="btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="16" cy="16" r="16" fill="#009EF6"/>
+                                        <path d="M15.1984 15.1987L15.2422 15.1773C15.3789 15.109 15.5324 15.0813 15.6845 15.0975C15.8365 15.1137 15.9807 15.1731 16.1 15.2688C16.2193 15.3644 16.3087 15.4922 16.3577 15.6371C16.4066 15.7819 16.4129 15.9378 16.376 16.0861L15.6208 19.1112C15.5837 19.2597 15.5898 19.4157 15.6386 19.5607C15.6874 19.7057 15.7768 19.8337 15.8962 19.9295C16.0155 20.0253 16.1599 20.0848 16.312 20.1011C16.4642 20.1173 16.6178 20.0895 16.7547 20.0211L16.7984 19.9987M25.5984 15.9987C25.5984 17.2594 25.3501 18.5077 24.8677 19.6724C24.3852 20.8372 23.6781 21.8955 22.7867 22.7869C21.8952 23.6783 20.8369 24.3855 19.6722 24.8679C18.5075 25.3504 17.2591 25.5987 15.9984 25.5987C14.7377 25.5987 13.4894 25.3504 12.3247 24.8679C11.16 24.3855 10.1017 23.6783 9.21021 22.7869C8.31877 21.8955 7.61164 20.8372 7.12919 19.6724C6.64675 18.5077 6.39844 17.2594 6.39844 15.9987C6.39844 13.4526 7.40986 11.0108 9.21021 9.21046C11.0106 7.41011 13.4524 6.39868 15.9984 6.39868C18.5445 6.39868 20.9863 7.41011 22.7867 9.21046C24.587 11.0108 25.5984 13.4526 25.5984 15.9987ZM15.9984 11.9987H16.007V12.0072H15.9984V11.9987Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg></button>
+                                    <button class="btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="16" cy="16" r="16" fill="#F1416C"/>
+                                        <path d="M18.4304 6.39868C18.8782 6.39879 19.3145 6.52568 19.6777 6.76138C20.0409 6.99708 20.3124 7.32964 20.4539 7.71196L21.0331 9.27868H24.5318C24.8147 9.27868 25.086 9.37982 25.286 9.55986C25.4861 9.73989 25.5984 9.98407 25.5984 10.2387C25.5984 10.4933 25.4861 10.7375 25.286 10.9175C25.086 11.0975 24.8147 11.1987 24.5318 11.1987L24.5286 11.2668L23.6038 22.9241C23.5461 23.6505 23.1848 24.3302 22.5926 24.8264C22.0005 25.3227 21.2214 25.5986 20.4123 25.5987H11.5846C10.7755 25.5986 9.99642 25.3227 9.40427 24.8264C8.81212 24.3302 8.45082 23.6505 8.3931 22.9241L7.4683 11.2659C7.46637 11.2435 7.46531 11.2211 7.4651 11.1987C7.18221 11.1987 6.9109 11.0975 6.71086 10.9175C6.51082 10.7375 6.39844 10.4933 6.39844 10.2387C6.39844 9.98407 6.51082 9.73989 6.71086 9.55986C6.9109 9.37982 7.18221 9.27868 7.4651 9.27868H10.9638L11.543 7.71196C11.6845 7.32949 11.9562 6.99681 12.3196 6.7611C12.683 6.52538 13.1196 6.39858 13.5675 6.39868H18.4304ZM22.3952 11.1987H9.60164L10.5211 22.7868C10.5403 23.029 10.6606 23.2556 10.8579 23.421C11.0552 23.5865 11.3149 23.6786 11.5846 23.6787H20.4123C20.682 23.6786 20.9416 23.5865 21.139 23.421C21.3363 23.2556 21.4566 23.029 21.4758 22.7868L22.3952 11.1987ZM13.8651 14.0787C14.1264 14.0787 14.3785 14.165 14.5738 14.3213C14.769 14.4775 14.8937 14.6928 14.9243 14.9264L14.9318 15.0387V19.8387C14.9315 20.0834 14.8274 20.3187 14.6407 20.4966C14.4541 20.6746 14.199 20.7816 13.9276 20.796C13.6562 20.8103 13.389 20.7308 13.1805 20.5738C12.972 20.4167 12.838 20.194 12.8059 19.951L12.7984 19.8387V15.0387C12.7984 14.7841 12.9108 14.5399 13.1109 14.3599C13.3109 14.1798 13.5822 14.0787 13.8651 14.0787ZM18.1318 14.0787C18.4147 14.0787 18.686 14.1798 18.886 14.3599C19.0861 14.5399 19.1984 14.7841 19.1984 15.0387V19.8387C19.1984 20.0933 19.0861 20.3375 18.886 20.5175C18.686 20.6975 18.4147 20.7987 18.1318 20.7987C17.8489 20.7987 17.5776 20.6975 17.3775 20.5175C17.1775 20.3375 17.0651 20.0933 17.0651 19.8387V15.0387C17.0651 14.7841 17.1775 14.5399 17.3775 14.3599C17.5776 14.1798 17.8489 14.0787 18.1318 14.0787ZM18.4304 8.31868H13.5664L13.2112 9.27868H18.7856L18.4304 8.31868Z" fill="white"/>
+                                        </svg></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+
+
+                </div>
+                <div class="col-xl-4">
+                    <div class="profile_head shadow-sm">
+                        <div class="profile_main">
+                            <div class="row">
+                                <div class="col-5 text-end user_box">
+                                    <img src="https://i.ibb.co/R0L2KXN/Ellipse-44.png" alt="User Picture">
+                                    <span><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 14.5349L8.413 14.5199L18.045 4.97988C18.423 4.60188 18.631 4.09988 18.631 3.56588C18.631 3.03188 18.423 2.52988 18.045 2.15188L16.459 0.565875C15.703 -0.190125 14.384 -0.186125 13.634 0.562875L4 10.1049V14.5349ZM15.045 1.97988L16.634 3.56288L15.037 5.14488L13.451 3.55988L15.045 1.97988ZM6 10.9389L12.03 4.96588L13.616 6.55188L7.587 12.5229L6 12.5279V10.9389Z" fill="#585656"/>
+                                        <path d="M2 18.522H16C17.103 18.522 18 17.625 18 16.522V7.85397L16 9.85397V16.522H5.158C5.132 16.522 5.105 16.532 5.079 16.532C5.046 16.532 5.013 16.523 4.979 16.522H2V2.52197H8.847L10.847 0.521973H2C0.897 0.521973 0 1.41897 0 2.52197V16.522C0 17.625 0.897 18.522 2 18.522Z" fill="#585656"/>
+                                        </svg></span>
+                                </div>
+                                <div class="col-7">
+                                    <div class="check_main">
+                                        <label class="custom-checkbox d-flex align-items-center">
+                                            <input id="checkboxInput" type="checkbox">
+                                            <span class="checkbox-icon"></span>
+                                        </label>
+                                    </div>
+    
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>ID:</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>01</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Operator Name :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Admin</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Full Name :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Khairal Nizam</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Goup :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Male</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Last Access:</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>04/07/2020 12:23 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile_sub">
+                            <div class="btn_sec">
+                                <button class="btn">Disable</button>
+                                <div class="info_btn">
+                                    <button style="margin-right: 12px;" class="btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="16" cy="16" r="16" fill="#009EF6"/>
+                                        <path d="M15.1984 15.1987L15.2422 15.1773C15.3789 15.109 15.5324 15.0813 15.6845 15.0975C15.8365 15.1137 15.9807 15.1731 16.1 15.2688C16.2193 15.3644 16.3087 15.4922 16.3577 15.6371C16.4066 15.7819 16.4129 15.9378 16.376 16.0861L15.6208 19.1112C15.5837 19.2597 15.5898 19.4157 15.6386 19.5607C15.6874 19.7057 15.7768 19.8337 15.8962 19.9295C16.0155 20.0253 16.1599 20.0848 16.312 20.1011C16.4642 20.1173 16.6178 20.0895 16.7547 20.0211L16.7984 19.9987M25.5984 15.9987C25.5984 17.2594 25.3501 18.5077 24.8677 19.6724C24.3852 20.8372 23.6781 21.8955 22.7867 22.7869C21.8952 23.6783 20.8369 24.3855 19.6722 24.8679C18.5075 25.3504 17.2591 25.5987 15.9984 25.5987C14.7377 25.5987 13.4894 25.3504 12.3247 24.8679C11.16 24.3855 10.1017 23.6783 9.21021 22.7869C8.31877 21.8955 7.61164 20.8372 7.12919 19.6724C6.64675 18.5077 6.39844 17.2594 6.39844 15.9987C6.39844 13.4526 7.40986 11.0108 9.21021 9.21046C11.0106 7.41011 13.4524 6.39868 15.9984 6.39868C18.5445 6.39868 20.9863 7.41011 22.7867 9.21046C24.587 11.0108 25.5984 13.4526 25.5984 15.9987ZM15.9984 11.9987H16.007V12.0072H15.9984V11.9987Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg></button>
+                                    <button class="btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="16" cy="16" r="16" fill="#F1416C"/>
+                                        <path d="M18.4304 6.39868C18.8782 6.39879 19.3145 6.52568 19.6777 6.76138C20.0409 6.99708 20.3124 7.32964 20.4539 7.71196L21.0331 9.27868H24.5318C24.8147 9.27868 25.086 9.37982 25.286 9.55986C25.4861 9.73989 25.5984 9.98407 25.5984 10.2387C25.5984 10.4933 25.4861 10.7375 25.286 10.9175C25.086 11.0975 24.8147 11.1987 24.5318 11.1987L24.5286 11.2668L23.6038 22.9241C23.5461 23.6505 23.1848 24.3302 22.5926 24.8264C22.0005 25.3227 21.2214 25.5986 20.4123 25.5987H11.5846C10.7755 25.5986 9.99642 25.3227 9.40427 24.8264C8.81212 24.3302 8.45082 23.6505 8.3931 22.9241L7.4683 11.2659C7.46637 11.2435 7.46531 11.2211 7.4651 11.1987C7.18221 11.1987 6.9109 11.0975 6.71086 10.9175C6.51082 10.7375 6.39844 10.4933 6.39844 10.2387C6.39844 9.98407 6.51082 9.73989 6.71086 9.55986C6.9109 9.37982 7.18221 9.27868 7.4651 9.27868H10.9638L11.543 7.71196C11.6845 7.32949 11.9562 6.99681 12.3196 6.7611C12.683 6.52538 13.1196 6.39858 13.5675 6.39868H18.4304ZM22.3952 11.1987H9.60164L10.5211 22.7868C10.5403 23.029 10.6606 23.2556 10.8579 23.421C11.0552 23.5865 11.3149 23.6786 11.5846 23.6787H20.4123C20.682 23.6786 20.9416 23.5865 21.139 23.421C21.3363 23.2556 21.4566 23.029 21.4758 22.7868L22.3952 11.1987ZM13.8651 14.0787C14.1264 14.0787 14.3785 14.165 14.5738 14.3213C14.769 14.4775 14.8937 14.6928 14.9243 14.9264L14.9318 15.0387V19.8387C14.9315 20.0834 14.8274 20.3187 14.6407 20.4966C14.4541 20.6746 14.199 20.7816 13.9276 20.796C13.6562 20.8103 13.389 20.7308 13.1805 20.5738C12.972 20.4167 12.838 20.194 12.8059 19.951L12.7984 19.8387V15.0387C12.7984 14.7841 12.9108 14.5399 13.1109 14.3599C13.3109 14.1798 13.5822 14.0787 13.8651 14.0787ZM18.1318 14.0787C18.4147 14.0787 18.686 14.1798 18.886 14.3599C19.0861 14.5399 19.1984 14.7841 19.1984 15.0387V19.8387C19.1984 20.0933 19.0861 20.3375 18.886 20.5175C18.686 20.6975 18.4147 20.7987 18.1318 20.7987C17.8489 20.7987 17.5776 20.6975 17.3775 20.5175C17.1775 20.3375 17.0651 20.0933 17.0651 19.8387V15.0387C17.0651 14.7841 17.1775 14.5399 17.3775 14.3599C17.5776 14.1798 17.8489 14.0787 18.1318 14.0787ZM18.4304 8.31868H13.5664L13.2112 9.27868H18.7856L18.4304 8.31868Z" fill="white"/>
+                                        </svg></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+
+
+                </div>
+                <div class="col-xl-4">
+                    <div class="profile_head shadow-sm">
+                        <div class="profile_main">
+                            <div class="row">
+                                <div class="col-5 text-end user_box">
+                                    <img src="https://i.ibb.co/R0L2KXN/Ellipse-44.png" alt="User Picture">
+                                    <span><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 14.5349L8.413 14.5199L18.045 4.97988C18.423 4.60188 18.631 4.09988 18.631 3.56588C18.631 3.03188 18.423 2.52988 18.045 2.15188L16.459 0.565875C15.703 -0.190125 14.384 -0.186125 13.634 0.562875L4 10.1049V14.5349ZM15.045 1.97988L16.634 3.56288L15.037 5.14488L13.451 3.55988L15.045 1.97988ZM6 10.9389L12.03 4.96588L13.616 6.55188L7.587 12.5229L6 12.5279V10.9389Z" fill="#585656"/>
+                                        <path d="M2 18.522H16C17.103 18.522 18 17.625 18 16.522V7.85397L16 9.85397V16.522H5.158C5.132 16.522 5.105 16.532 5.079 16.532C5.046 16.532 5.013 16.523 4.979 16.522H2V2.52197H8.847L10.847 0.521973H2C0.897 0.521973 0 1.41897 0 2.52197V16.522C0 17.625 0.897 18.522 2 18.522Z" fill="#585656"/>
+                                        </svg></span>
+                                </div>
+                                <div class="col-7">
+                                    <div class="check_main">
+                                        <label class="custom-checkbox d-flex align-items-center">
+                                            <input id="checkboxInput" type="checkbox">
+                                            <span class="checkbox-icon"></span>
+                                        </label>
+                                    </div>
+    
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>ID:</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>01</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Operator Name :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Admin</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Full Name :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Khairal Nizam</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Goup :</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>Male</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-5 text-start profile_content">
+                                    <span>Last Access:</span>
+                                </div>
+                                <div class="col-7 text-start profile_content">
+                                    <span>04/07/2020 12:23 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile_sub">
+                            <div class="btn_sec">
+                                <button class="btn">Disable</button>
+                                <div class="info_btn">
+                                    <button style="margin-right: 12px;" class="btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="16" cy="16" r="16" fill="#009EF6"/>
+                                        <path d="M15.1984 15.1987L15.2422 15.1773C15.3789 15.109 15.5324 15.0813 15.6845 15.0975C15.8365 15.1137 15.9807 15.1731 16.1 15.2688C16.2193 15.3644 16.3087 15.4922 16.3577 15.6371C16.4066 15.7819 16.4129 15.9378 16.376 16.0861L15.6208 19.1112C15.5837 19.2597 15.5898 19.4157 15.6386 19.5607C15.6874 19.7057 15.7768 19.8337 15.8962 19.9295C16.0155 20.0253 16.1599 20.0848 16.312 20.1011C16.4642 20.1173 16.6178 20.0895 16.7547 20.0211L16.7984 19.9987M25.5984 15.9987C25.5984 17.2594 25.3501 18.5077 24.8677 19.6724C24.3852 20.8372 23.6781 21.8955 22.7867 22.7869C21.8952 23.6783 20.8369 24.3855 19.6722 24.8679C18.5075 25.3504 17.2591 25.5987 15.9984 25.5987C14.7377 25.5987 13.4894 25.3504 12.3247 24.8679C11.16 24.3855 10.1017 23.6783 9.21021 22.7869C8.31877 21.8955 7.61164 20.8372 7.12919 19.6724C6.64675 18.5077 6.39844 17.2594 6.39844 15.9987C6.39844 13.4526 7.40986 11.0108 9.21021 9.21046C11.0106 7.41011 13.4524 6.39868 15.9984 6.39868C18.5445 6.39868 20.9863 7.41011 22.7867 9.21046C24.587 11.0108 25.5984 13.4526 25.5984 15.9987ZM15.9984 11.9987H16.007V12.0072H15.9984V11.9987Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg></button>
+                                    <button class="btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="16" cy="16" r="16" fill="#F1416C"/>
+                                        <path d="M18.4304 6.39868C18.8782 6.39879 19.3145 6.52568 19.6777 6.76138C20.0409 6.99708 20.3124 7.32964 20.4539 7.71196L21.0331 9.27868H24.5318C24.8147 9.27868 25.086 9.37982 25.286 9.55986C25.4861 9.73989 25.5984 9.98407 25.5984 10.2387C25.5984 10.4933 25.4861 10.7375 25.286 10.9175C25.086 11.0975 24.8147 11.1987 24.5318 11.1987L24.5286 11.2668L23.6038 22.9241C23.5461 23.6505 23.1848 24.3302 22.5926 24.8264C22.0005 25.3227 21.2214 25.5986 20.4123 25.5987H11.5846C10.7755 25.5986 9.99642 25.3227 9.40427 24.8264C8.81212 24.3302 8.45082 23.6505 8.3931 22.9241L7.4683 11.2659C7.46637 11.2435 7.46531 11.2211 7.4651 11.1987C7.18221 11.1987 6.9109 11.0975 6.71086 10.9175C6.51082 10.7375 6.39844 10.4933 6.39844 10.2387C6.39844 9.98407 6.51082 9.73989 6.71086 9.55986C6.9109 9.37982 7.18221 9.27868 7.4651 9.27868H10.9638L11.543 7.71196C11.6845 7.32949 11.9562 6.99681 12.3196 6.7611C12.683 6.52538 13.1196 6.39858 13.5675 6.39868H18.4304ZM22.3952 11.1987H9.60164L10.5211 22.7868C10.5403 23.029 10.6606 23.2556 10.8579 23.421C11.0552 23.5865 11.3149 23.6786 11.5846 23.6787H20.4123C20.682 23.6786 20.9416 23.5865 21.139 23.421C21.3363 23.2556 21.4566 23.029 21.4758 22.7868L22.3952 11.1987ZM13.8651 14.0787C14.1264 14.0787 14.3785 14.165 14.5738 14.3213C14.769 14.4775 14.8937 14.6928 14.9243 14.9264L14.9318 15.0387V19.8387C14.9315 20.0834 14.8274 20.3187 14.6407 20.4966C14.4541 20.6746 14.199 20.7816 13.9276 20.796C13.6562 20.8103 13.389 20.7308 13.1805 20.5738C12.972 20.4167 12.838 20.194 12.8059 19.951L12.7984 19.8387V15.0387C12.7984 14.7841 12.9108 14.5399 13.1109 14.3599C13.3109 14.1798 13.5822 14.0787 13.8651 14.0787ZM18.1318 14.0787C18.4147 14.0787 18.686 14.1798 18.886 14.3599C19.0861 14.5399 19.1984 14.7841 19.1984 15.0387V19.8387C19.1984 20.0933 19.0861 20.3375 18.886 20.5175C18.686 20.6975 18.4147 20.7987 18.1318 20.7987C17.8489 20.7987 17.5776 20.6975 17.3775 20.5175C17.1775 20.3375 17.0651 20.0933 17.0651 19.8387V15.0387C17.0651 14.7841 17.1775 14.5399 17.3775 14.3599C17.5776 14.1798 17.8489 14.0787 18.1318 14.0787ZM18.4304 8.31868H13.5664L13.2112 9.27868H18.7856L18.4304 8.31868Z" fill="white"/>
+                                        </svg></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+  </section>
+  <!-- User Section End -->
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
